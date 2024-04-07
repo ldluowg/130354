@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg2eexgke0ft8"]
+
+[ext_resource type="Script" path="res://scripts/drop_table.gd" id="1_2rgry"]
+[ext_resource type="Texture2D" uid="uid://crad2tt1p8yqf" path="res://assets/icons/250plus survival flat icons/arrows.png" id="2_4tuwr"]
+
+[node name="DropTable" type="Node2D"]
+script = ExtResource("1_2rgry")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 94.0
+offset_bottom = 57.0
+color = Color(1, 0, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_4tuwr")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_right = 47.0
+offset_bottom = 26.0
+text = "Demo
+"

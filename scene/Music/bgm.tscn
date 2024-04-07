@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs32mjb0p6vqe"]
+
+[ext_resource type="AudioStream" uid="uid://dtc8wkinomlgq" path="res://assets/sounds/loop.mp3" id="1_04a7k"]
+
+[node name="BGM" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_04a7k")
+volume_db = 0.3
+autoplay = true
+bus = &"Music"

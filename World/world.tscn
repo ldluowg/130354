@@ -1,0 +1,126 @@
+[gd_scene load_steps=23 format=3 uid="uid://d1q0yfbbxuoau"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_66jli"]
+[ext_resource type="PackedScene" uid="uid://xcbe0aa3u3iv" path="res://Textures/Map/cliff.tscn" id="5_ndw6w"]
+[ext_resource type="PackedScene" uid="uid://bejbis46hbypb" path="res://Enemy/enemy_kobold_weak.tscn" id="6_6obdr"]
+[ext_resource type="Script" path="res://Utilities/spawn_infor.gd" id="7_1h4d2"]
+[ext_resource type="PackedScene" uid="uid://d1cw7tf5cedq7" path="res://actor/player.tscn" id="7_xkrdh"]
+[ext_resource type="PackedScene" uid="uid://coldigc4lw8ve" path="res://Enemy/enemy_kobold_strong.tscn" id="8_67h4f"]
+[ext_resource type="PackedScene" uid="uid://wouwe5l08in1" path="res://prefabs/damage_indicator_manager.tscn" id="8_inbm8"]
+[ext_resource type="PackedScene" uid="uid://bvflqhwv4gn2j" path="res://Enemy/enemy_cyclops.tscn" id="9_830xu"]
+[ext_resource type="PackedScene" uid="uid://38hr5on2wopu" path="res://Enemy/Boss.tscn" id="10_nc3hu"]
+[ext_resource type="Script" path="res://Utilities/enemy_spawner.gd" id="11_j7dbk"]
+
+[sub_resource type="Resource" id="Resource_i2nia"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("6_6obdr")
+spawn_rate = 0.5
+
+[sub_resource type="Resource" id="Resource_1eewo"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("6_6obdr")
+spawn_rate = 2.0
+
+[sub_resource type="Resource" id="Resource_v05s7"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("8_67h4f")
+spawn_rate = 1.0
+
+[sub_resource type="Resource" id="Resource_ugs6x"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("6_6obdr")
+spawn_rate = 1.0
+
+[sub_resource type="Resource" id="Resource_8l4uv"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("8_67h4f")
+spawn_rate = 1.0
+
+[sub_resource type="Resource" id="Resource_nlmn5"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("6_6obdr")
+spawn_rate = 1.0
+
+[sub_resource type="Resource" id="Resource_00o2w"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("8_67h4f")
+spawn_rate = 0.5
+
+[sub_resource type="Resource" id="Resource_d1w2y"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("9_830xu")
+spawn_rate = 0.3
+
+[sub_resource type="Resource" id="Resource_pr6s1"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("10_nc3hu")
+spawn_rate = 0.7
+
+[sub_resource type="Resource" id="Resource_vx2gf"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("6_6obdr")
+spawn_rate = 1.5
+
+[sub_resource type="Resource" id="Resource_uvsda"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("8_67h4f")
+spawn_rate = 1.0
+
+[sub_resource type="Resource" id="Resource_6kltt"]
+script = ExtResource("7_1h4d2")
+enemy = ExtResource("9_830xu")
+spawn_rate = 0.5
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_66jli")
+_bush_spawn_rate = 5
+_grass_spawn_rate = 10
+
+[node name="player" parent="." instance=ExtResource("7_xkrdh")]
+position = Vector2(383, 360)
+max_health = 10
+
+[node name="DamageIndicatorManager" parent="." instance=ExtResource("8_inbm8")]
+
+[node name="Cliff" parent="." instance=ExtResource("5_ndw6w")]
+
+[node name="WorldEvent" type="Node" parent="."]
+
+[node name="first_phase" type="Node2D" parent="WorldEvent" node_paths=PackedStringArray("next_event")]
+script = ExtResource("11_j7dbk")
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_i2nia")])
+next_event = NodePath("../2_phase")
+activate_on_ready = true
+
+[node name="2_phase" type="Node2D" parent="WorldEvent" node_paths=PackedStringArray("next_event")]
+script = ExtResource("11_j7dbk")
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_1eewo")])
+next_event = NodePath("../3_phase")
+
+[node name="3_phase" type="Node2D" parent="WorldEvent" node_paths=PackedStringArray("next_event")]
+script = ExtResource("11_j7dbk")
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_v05s7")])
+next_event = NodePath("../4_phase")
+
+[node name="4_phase" type="Node2D" parent="WorldEvent" node_paths=PackedStringArray("next_event")]
+script = ExtResource("11_j7dbk")
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_ugs6x"), SubResource("Resource_8l4uv")])
+next_event = NodePath("../5_phase")
+
+[node name="5_phase" type="Node2D" parent="WorldEvent" node_paths=PackedStringArray("next_event")]
+script = ExtResource("11_j7dbk")
+duration = 30
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_nlmn5"), SubResource("Resource_00o2w"), SubResource("Resource_d1w2y")])
+next_event = NodePath("../6_phase_boss")
+
+[node name="6_phase_boss" type="Node2D" parent="WorldEvent" node_paths=PackedStringArray("next_event")]
+script = ExtResource("11_j7dbk")
+duration = 1
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_pr6s1")])
+next_event = NodePath("../7_phase_last")
+
+[node name="7_phase_last" type="Node2D" parent="WorldEvent"]
+script = ExtResource("11_j7dbk")
+spawns = Array[ExtResource("7_1h4d2")]([SubResource("Resource_vx2gf"), SubResource("Resource_uvsda"), SubResource("Resource_6kltt")])

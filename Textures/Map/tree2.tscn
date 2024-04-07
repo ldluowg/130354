@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://6stokkelwqn2"]
+
+[ext_resource type="Texture2D" uid="uid://bj4ser0y7f8uk" path="res://Textures/Map/TX Shadow Plant.png" id="1_ci5p1"]
+[ext_resource type="Script" path="res://scripts/destroyable_object.gd" id="1_n51v4"]
+[ext_resource type="Texture2D" uid="uid://c1c41gytg1amh" path="res://Textures/Map/TX Plant.png" id="2_rb422"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_slhlg"]
+radius = 2.66667
+height = 10.6667
+
+[node name="Tree" type="StaticBody2D"]
+y_sort_enabled = true
+scale = Vector2(3, 3)
+script = ExtResource("1_n51v4")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-2.38419e-07, -3.8147e-06)
+texture = ExtResource("1_ci5p1")
+offset = Vector2(2.66667, -17.6667)
+region_enabled = true
+region_rect = Rect2(296, 96, 88, 64)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 11
+y_sort_enabled = true
+texture_filter = 1
+texture = ExtResource("2_rb422")
+offset = Vector2(-3.33333, -58)
+region_enabled = true
+region_rect = Rect2(280, 16, 104, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 2.66667)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_slhlg")

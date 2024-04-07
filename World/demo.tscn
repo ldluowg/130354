@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://f714c3rervrr"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_i58l8"]
+[ext_resource type="PackedScene" uid="uid://d1cw7tf5cedq7" path="res://actor/player.tscn" id="2_oqxt3"]
+[ext_resource type="PackedScene" uid="uid://wouwe5l08in1" path="res://prefabs/damage_indicator_manager.tscn" id="3_62y28"]
+[ext_resource type="PackedScene" uid="uid://xcbe0aa3u3iv" path="res://Textures/Map/cliff.tscn" id="4_0id51"]
+[ext_resource type="PackedScene" uid="uid://ejab5r53tapu" path="res://Utilities/enemy_spawner.tscn" id="5_cnp3f"]
+[ext_resource type="PackedScene" uid="uid://bejbis46hbypb" path="res://Enemy/enemy_kobold_weak.tscn" id="6_krt04"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_i58l8")
+
+[node name="player" parent="." instance=ExtResource("2_oqxt3")]
+visible = false
+position = Vector2(383, 360)
+
+[node name="DamageIndicatorManager" parent="." instance=ExtResource("3_62y28")]
+
+[node name="Cliff" parent="." instance=ExtResource("4_0id51")]
+
+[node name="EnemySpawner" parent="." groups=["loot"] instance=ExtResource("5_cnp3f")]
+
+[node name="enemy_kobold_weak" parent="." instance=ExtResource("6_krt04")]
+position = Vector2(697, 398)

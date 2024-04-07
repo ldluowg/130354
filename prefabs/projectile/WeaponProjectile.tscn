@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqwa6ivsqmcm6"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/projectile.gd" id="1_0c3hn"]
+[ext_resource type="Texture2D" uid="uid://c8mcij34wcbel" path="res://assets/bullet.png" id="1_7jy3l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgy55"]
+
+[node name="WeaponProjectile" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 1026
+max_contacts_reported = 1
+contact_monitor = true
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_0c3hn")
+metadata/_edit_horizontal_guides_ = [-132.0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cgy55")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+texture = ExtResource("1_7jy3l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyal7ikuk4dur"]
+
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_3pq10"]
+[ext_resource type="Texture2D" uid="uid://ktsr15rnow7j" path="res://assets/icons/250plus survival flat icons/bullet2.png" id="2_bng6s"]
+
+[node name="PU10Dmg" type="Node"]
+script = ExtResource("1_3pq10")
+_id = "pu_dmg_10"
+display_name = "Incresing Power"
+image = ExtResource("2_bng6s")
+damage = 10.0
+fire_rate = -20.0
+description = "Damage +10
+Fire rate -20%
+Epic"

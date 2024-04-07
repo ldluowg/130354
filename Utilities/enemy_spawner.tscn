@@ -1,0 +1,27 @@
+[gd_scene load_steps=9 format=3 uid="uid://ejab5r53tapu"]
+
+[ext_resource type="Script" path="res://Utilities/enemy_spawner.gd" id="1_t1qt2"]
+[ext_resource type="PackedScene" uid="uid://bejbis46hbypb" path="res://Enemy/enemy_kobold_weak.tscn" id="2_iswil"]
+[ext_resource type="Script" path="res://Utilities/spawn_infor.gd" id="3_pkvf4"]
+[ext_resource type="PackedScene" uid="uid://coldigc4lw8ve" path="res://Enemy/enemy_kobold_strong.tscn" id="4_k2i6s"]
+[ext_resource type="PackedScene" uid="uid://bvflqhwv4gn2j" path="res://Enemy/enemy_cyclops.tscn" id="5_v1lc1"]
+
+[sub_resource type="Resource" id="Resource_mqsgl"]
+script = ExtResource("3_pkvf4")
+enemy = ExtResource("2_iswil")
+spawn_rate = 0.0
+
+[sub_resource type="Resource" id="Resource_nhiyb"]
+script = ExtResource("3_pkvf4")
+enemy = ExtResource("4_k2i6s")
+spawn_rate = 0.0
+
+[sub_resource type="Resource" id="Resource_la1qy"]
+script = ExtResource("3_pkvf4")
+enemy = ExtResource("5_v1lc1")
+spawn_rate = 0.0
+
+[node name="EnemySpawner" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_t1qt2")
+spawns = Array[ExtResource("3_pkvf4")]([SubResource("Resource_mqsgl"), SubResource("Resource_nhiyb"), SubResource("Resource_la1qy")])

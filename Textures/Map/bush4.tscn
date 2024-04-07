@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dot5qv40tluuw"]
+
+[ext_resource type="Texture2D" uid="uid://bj4ser0y7f8uk" path="res://Textures/Map/TX Shadow Plant.png" id="1_hn4rq"]
+[ext_resource type="Script" path="res://scripts/destroyable_object.gd" id="1_ss2l6"]
+[ext_resource type="Texture2D" uid="uid://c1c41gytg1amh" path="res://Textures/Map/TX Plant.png" id="2_pgtv5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wi6qa"]
+radius = 5.33333
+height = 21.3334
+
+[node name="Bush" type="StaticBody2D"]
+y_sort_enabled = true
+scale = Vector2(3, 3)
+script = ExtResource("1_ss2l6")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_hn4rq")
+offset = Vector2(-2.66667, -0.333405)
+region_enabled = true
+region_rect = Rect2(280, 192, 48, 56)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 11
+texture_filter = 5
+texture = ExtResource("2_pgtv5")
+offset = Vector2(-1.66667, -6.66668)
+region_enabled = true
+region_rect = Rect2(280, 184, 48, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1, -1.00004)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wi6qa")

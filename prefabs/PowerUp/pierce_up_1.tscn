@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://carfq7hcrj16t"]
+
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_iwd8e"]
+[ext_resource type="Texture2D" uid="uid://bujefp3wa2m24" path="res://assets/icons/250plus survival flat icons/arrow1.png" id="2_i7gw5"]
+
+[node name="pierce_up_1" type="Node"]
+script = ExtResource("1_iwd8e")
+_id = "pu_p_1"
+display_name = "Pierce Up"
+image = ExtResource("2_i7gw5")
+pierce = 1.0
+description = "Bullet pierce 1 more enemy
+"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://t0uc7m0w5c4u"]
+
+[ext_resource type="Script" path="res://scripts/UI/item_options.gd" id="1_v67wa"]
+
+[node name="item_options" type="ColorRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.890196, 0.682353, 0.588235, 1)
+script = ExtResource("1_v67wa")
+
+[node name="BG" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.527344, 0.804688, 0.972656, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+flip_h = true
+
+[connection signal="mouse_entered" from="BG" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BG" to="." method="_on_mouse_exited"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://coldigc4lw8ve"]
+
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_n1d6c"]
+[ext_resource type="Texture2D" uid="uid://dr02ctb3lknt7" path="res://Textures/Enemy/kolbold_strong.png" id="2_4rfhn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8of3p"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="Animation" id="Animation_pg8rb"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_k6yh0"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81enl"]
+_data = {
+"RESET": SubResource("Animation_pg8rb"),
+"walk": SubResource("Animation_k6yh0")
+}
+
+[node name="enemy_kobold_strong" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_n1d6c")
+dmg = 2
+exp = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, -8)
+scale = Vector2(2.02734, 2.01563)
+texture = ExtResource("2_4rfhn")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_8of3p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_81enl")
+}

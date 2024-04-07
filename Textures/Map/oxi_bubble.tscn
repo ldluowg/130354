@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=3 uid="uid://cpx861oo2j3s0"]
+
+[ext_resource type="Script" path="res://Textures/Map/OxiZone.gd" id="2_xig8c"]
+[ext_resource type="Texture2D" uid="uid://bp1o3jyp0w4o5" path="res://Textures/Map/pngwing.com.png" id="3_gkd8g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyb8s"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucenq"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(180, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spyfo"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(360, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2erg"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(0, 160, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s8bm"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(180, 160, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k71hx"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(360, 160, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46bkj"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(0, 320, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b44ha"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(180, 320, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6y8g"]
+atlas = ExtResource("3_gkd8g")
+region = Rect2(360, 320, 180, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7cce6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyb8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucenq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spyfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2erg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s8bm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46bkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b44ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6y8g")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqrln"]
+radius = 44.2719
+
+[node name="OxiBubble" type="StaticBody2D"]
+texture_filter = 1
+collision_layer = 0
+
+[node name="AnimatedOxi" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7cce6")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.877857
+
+[node name="OxiZone" type="Area2D" parent="."]
+script = ExtResource("2_xig8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OxiZone"]
+shape = SubResource("CircleShape2D_yqrln")
+
+[node name="Timer" type="Timer" parent="OxiZone"]
+one_shot = true
+autostart = true
+
+[node name="Pngwing_com" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(0.242, 0.2)
+texture = ExtResource("3_gkd8g")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="Pngwing_com2" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_gkd8g")
+
+[node name="Pngwing_com3" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_gkd8g")
+
+[node name="Pngwing_com4" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_gkd8g")
+
+[node name="Pngwing_com5" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_gkd8g")
+
+[connection signal="body_entered" from="OxiZone" to="OxiZone" method="_on_body_entered"]
+[connection signal="body_exited" from="OxiZone" to="OxiZone" method="_on_body_exited"]
+[connection signal="timeout" from="OxiZone/Timer" to="OxiZone" method="_on_timer_timeout"]

@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxuontef8t3pw"]
+
+[ext_resource type="Script" path="res://scripts/UI/select_weapon_menu.gd" id="1_1nv2n"]
+[ext_resource type="Texture2D" uid="uid://muvdwnoo57mr" path="res://assets/icons/250plus survival flat icons/syringe2.png" id="2_wpmwq"]
+[ext_resource type="Texture2D" uid="uid://dsekphqon766k" path="res://assets/icons/250plus survival flat icons/syringe2_empty.png" id="3_b27di"]
+
+[node name="select_weapon_menu" type="Control"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchor_right = 0.302
+anchor_bottom = 0.304
+offset_right = -386.56
+offset_bottom = -218.88
+script = ExtResource("1_1nv2n")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 405.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lbl_title" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Choose slot to assign your new weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weapon_slot_container" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="weap_1" type="ColorRect" parent="Panel/VBoxContainer/weapon_slot_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.890196, 0.67451, 0.870588, 1)
+
+[node name="weap_2" type="ColorRect" parent="Panel/VBoxContainer/weapon_slot_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.890196, 0.67451, 0.870588, 1)
+
+[node name="btn_get_weap" type="TextureButton" parent="Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.972
+anchor_top = 0.355
+anchor_right = 1.156
+anchor_bottom = 0.677
+offset_left = -35.22
+offset_top = 35.255
+offset_right = -6.05997
+offset_bottom = 64.737
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.785398
+texture_normal = ExtResource("2_wpmwq")
+texture_pressed = ExtResource("2_wpmwq")
+texture_hover = ExtResource("3_b27di")
+texture_focused = ExtResource("3_b27di")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[connection signal="pressed" from="Panel/btn_get_weap" to="." method="_on_btn_get_weap_pressed"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh36n2buir3yw"]
+
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_ebo3x"]
+[ext_resource type="Texture2D" uid="uid://cjaqix487fccs" path="res://assets/icons/250plus survival flat icons/wolf.png" id="2_m51t0"]
+
+[node name="pu_size_10" type="Node"]
+script = ExtResource("1_ebo3x")
+_id = "pu_s_10"
+display_name = "Size up"
+image = ExtResource("2_m51t0")
+damage = 2.0
+size = 10.0
+recoil = 1.0
+description = "Damage +2
+Bullet size increase by 20%
+"

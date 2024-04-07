@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca2d32o4j1plk"]
+
+[ext_resource type="Script" path="res://scripts/WeaponDrop.gd" id="1_hs0aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de5pd"]
+size = Vector2(90, 59)
+
+[node name="WeaponDrop" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 256
+max_contacts_reported = 1
+contact_monitor = true
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_hs0aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_de5pd")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+offset_left = -45.0
+offset_top = -14.0
+offset_right = 45.0
+offset_bottom = 45.0
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="WeaponSpite" type="ColorRect" parent="CanvasGroup"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 19.9999
+offset_bottom = 20.0
+rotation = 1.5708
+scale = Vector2(0.400001, 1.96)
+pivot_offset = Vector2(20, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasGroup"]
+offset_left = -39.0
+offset_top = 16.0
+offset_right = 38.0
+offset_bottom = 39.0
+text = "Magnum"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

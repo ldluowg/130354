@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4trmpmt8wuec"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_a62w2"]
+[ext_resource type="PackedScene" uid="uid://d1cw7tf5cedq7" path="res://actor/player.tscn" id="2_awlb0"]
+[ext_resource type="PackedScene" uid="uid://wouwe5l08in1" path="res://prefabs/damage_indicator_manager.tscn" id="3_r8m3s"]
+[ext_resource type="PackedScene" uid="uid://xcbe0aa3u3iv" path="res://Textures/Map/cliff.tscn" id="4_jyrr4"]
+[ext_resource type="PackedScene" uid="uid://ejab5r53tapu" path="res://Utilities/enemy_spawner.tscn" id="5_eujic"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_a62w2")
+_map = 1
+
+[node name="player" parent="." instance=ExtResource("2_awlb0")]
+position = Vector2(383, 360)
+
+[node name="DamageIndicatorManager" parent="." instance=ExtResource("3_r8m3s")]
+
+[node name="Cliff" parent="." instance=ExtResource("4_jyrr4")]
+
+[node name="EnemySpawner" parent="." groups=["loot"] instance=ExtResource("5_eujic")]

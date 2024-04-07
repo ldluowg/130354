@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://daym4ejy6fpvb"]
+
+[ext_resource type="Script" path="res://scripts/weapons/flame_thrower.gd" id="1_dwp6p"]
+[ext_resource type="PackedScene" uid="uid://cgmym14c5c24c" path="res://prefabs/projectile/FlameThrowerProjectile.tscn" id="2_mq8ew"]
+[ext_resource type="Texture2D" uid="uid://1mu5or8gmggy" path="res://assets/textures/gun/flame_thrower.png" id="3_ucut2"]
+[ext_resource type="AudioStream" uid="uid://va5wv1y8li62" path="res://assets/sounds/sfx/flame_thrower_sfx.wav" id="4_7vcbp"]
+
+[sub_resource type="Gradient" id="Gradient_bm2rv"]
+offsets = PackedFloat32Array(0, 0.985185)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5sl18"]
+gradient = SubResource("Gradient_bm2rv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bupg8"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 11.92
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 16.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 6.0
+color = Color(0.878431, 0.294118, 0.27451, 1)
+color_ramp = SubResource("GradientTexture1D_5sl18")
+hue_variation_min = -0.25
+
+[node name="FlameThrower" type="Node2D"]
+position = Vector2(19, -2)
+script = ExtResource("1_dwp6p")
+_id = "wp_flame"
+display_name = "Flame Thrower"
+image = ExtResource("3_ucut2")
+projectileScene = ExtResource("2_mq8ew")
+weapon_type = 2
+best_match = 5
+description = "Spray flame into enemy's face
+Dont have recoil but will slow player down 60% when firing"
+
+[node name="ProjectileSpawnLocation" type="Marker2D" parent="."]
+position = Vector2(67, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(30, -4)
+process_material = SubResource("ParticleProcessMaterial_bupg8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="FlameThrowerProjectile" parent="." instance=ExtResource("2_mq8ew")]
+texture_filter = 1
+position = Vector2(30, -4)
+freeze = true
+freeze_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-35.8276, -2.06493)
+scale = Vector2(0.433007, 0.435065)
+texture = ExtResource("3_ucut2")
+offset = Vector2(94, -1)
+
+[node name="GunSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7vcbp")

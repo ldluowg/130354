@@ -1,0 +1,181 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct1trbun045ws"]
+
+[ext_resource type="Script" path="res://scripts/gameover_event_manager.gd" id="1_elqwt"]
+[ext_resource type="AudioStream" uid="uid://bjk0ca662mux6" path="res://assets/sounds/menu/fail.wav" id="2_p1p0f"]
+[ext_resource type="AudioStream" uid="uid://bwpklrykaijs0" path="res://assets/sounds/menu/success.wav" id="3_tio7b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujhsi"]
+bg_color = Color(0, 0.815686, 0.360784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8ykc"]
+bg_color = Color(0, 0.952941, 0.360784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cij4"]
+bg_color = Color(0, 0.815686, 0.141176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbfim"]
+
+[node name="GUI_gameover" type="CanvasLayer"]
+script = ExtResource("1_elqwt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.223529)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -474.0
+offset_right = 477.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_vertical = 2
+
+[node name="GameoverMessage" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "YOU DIED
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayStat" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -184.0
+offset_right = 335.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PlayStat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
+
+[node name="EnemySkilled" type="Label" parent="PlayStat"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_right = 99.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "Enemy skilled : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuffListLabel" type="Label" parent="PlayStat"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 58.0
+offset_right = 55.0
+offset_bottom = 84.0
+grow_horizontal = 2
+text = "Buff selected :"
+
+[node name="BuffList" type="Control" parent="PlayStat"]
+layout_mode = 1
+anchor_top = 0.268493
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="PlayStat/BuffList"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SoundGroup" type="Node" parent="."]
+
+[node name="Fail" type="AudioStreamPlayer2D" parent="SoundGroup"]
+stream = ExtResource("2_p1p0f")
+bus = &"Music"
+
+[node name="Success" type="AudioStreamPlayer2D" parent="SoundGroup"]
+stream = ExtResource("3_tio7b")
+bus = &"Music"
+
+[node name="Option" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="Option"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -159.0
+offset_right = 335.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Retry" type="Button" parent="Option/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_ujhsi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y8ykc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3cij4")
+text = "Retry
+"
+
+[node name="Menu" type="Button" parent="Option/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_hbfim")
+text = "Return To Menu
+"
+
+[connection signal="pressed" from="Option/BoxContainer/Retry" to="." method="press_retry"]
+[connection signal="pressed" from="Option/BoxContainer/Menu" to="." method="exit_to_menu"]

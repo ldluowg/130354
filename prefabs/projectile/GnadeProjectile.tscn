@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://jfldn5en3yec"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/gnade_projectile.gd" id="1_xsic1"]
+[ext_resource type="Texture2D" uid="uid://bht7oc7qjvam1" path="res://assets/icons/250plus survival flat icons/granade1.png" id="2_jr2hy"]
+[ext_resource type="Texture2D" uid="uid://c8mcij34wcbel" path="res://assets/bullet.png" id="2_sx2l8"]
+[ext_resource type="AudioStream" uid="uid://3n66tcl1dh7j" path="res://assets/sounds/sfx/explosion.wav" id="4_o5sd0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdeg5"]
+radius = 80.0
+
+[sub_resource type="Animation" id="Animation_lmu2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fu62r"]
+resource_name = "explode"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rlyg7"]
+_data = {
+"RESET": SubResource("Animation_lmu2j"),
+"explode": SubResource("Animation_fu62r")
+}
+
+[node name="GnadeProjectile" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 1026
+max_contacts_reported = 50
+contact_monitor = true
+freeze = true
+freeze_mode = 1
+angular_velocity = 0.523599
+script = ExtResource("1_xsic1")
+speed = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.0760069, 0.0760069)
+texture = ExtResource("2_jr2hy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CircleShape2D_fdeg5")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rlyg7")
+}
+
+[node name="Explosion" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-1.19209e-07, 5.96046e-08)
+scale = Vector2(5.98148, 5.98148)
+texture = ExtResource("2_sx2l8")
+
+[node name="PSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_o5sd0")
+
+[connection signal="timeout" from="Timer" to="." method="_on_explosion"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

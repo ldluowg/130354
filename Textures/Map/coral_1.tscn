@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpehm5pm8afvm"]
+
+[ext_resource type="Texture2D" uid="uid://cpnln2w5a5k56" path="res://Textures/Map/coral.png" id="1_c3qaq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vffqs"]
+radius = 5.0
+height = 98.0
+
+[node name="Coral1" type="StaticBody2D"]
+texture_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vffqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1)
+texture = ExtResource("1_c3qaq")
+offset = Vector2(-2, -46)
+region_enabled = true
+region_rect = Rect2(40, 104, 136, 144)

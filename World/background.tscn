@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3agfywvwh4bb"]
+
+[ext_resource type="Texture2D" uid="uid://cau73qlasepk2" path="res://Textures/Map/TX Tileset Grass.png" id="1_82o8y"]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+texture_repeat = 1
+motion_mirroring = Vector2(1280, 1280)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxLayer"]
+texture_filter = 2
+texture_repeat = 2
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_82o8y")
+region_enabled = true
+region_rect = Rect2(0, 0, 2560, 2560)
+region_filter_clip_enabled = true

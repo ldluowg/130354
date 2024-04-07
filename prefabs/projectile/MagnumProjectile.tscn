@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1dfg7r8inc7q"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/magnum_projectile.gd" id="1_bysww"]
+[ext_resource type="Texture2D" uid="uid://jfd1uahem5x7" path="res://Textures/Map/pngegg(4).png" id="2_aebwo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgy55"]
+radius = 24.0208
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gs5t"]
+particle_flag_disable_z = true
+spread = 20.84
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 42.11
+initial_velocity_max = 147.37
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.0
+scale_max = 10.0
+
+[node name="MagnumProjectile" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 1026
+max_contacts_reported = 4
+contact_monitor = true
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_bysww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cgy55")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+texture = ExtResource("2_aebwo")
+region_enabled = true
+region_rect = Rect2(1240, 186, 104, 24)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+rotation = 3.14159
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_7gs5t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmmsxlskngumg"]
+
+[ext_resource type="Script" path="res://TImer/TimerControl.gd" id="1_rht5o"]
+
+[node name="TimerControl" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 50.0
+script = ExtResource("1_rht5o")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.732
+anchor_bottom = 1.0
+offset_right = -0.992004
+offset_bottom = -1.0
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

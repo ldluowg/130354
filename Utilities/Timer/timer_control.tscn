@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmmsxlskngumg"]
+
+[ext_resource type="Script" path="res://Utilities/Timer/timer_control.gd" id="1_ue05a"]
+
+[node name="TimerControl" type="Control"]
+top_level = true
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 56.0
+offset_bottom = 24.0
+script = ExtResource("1_ue05a")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 23.0
+max_lines_visible = 1

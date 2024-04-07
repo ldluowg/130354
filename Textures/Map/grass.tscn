@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://o6mcgai47ta4"]
+
+[ext_resource type="Texture2D" uid="uid://r4jsis05johw" path="res://Textures/Map/Grass.png" id="1_wyfhr"]
+
+[node name="Grass" type="StaticBody2D"]
+scale = Vector2(3, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_wyfhr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

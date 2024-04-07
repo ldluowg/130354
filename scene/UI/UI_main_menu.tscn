@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://gyfr0gkkhdkp"]
+
+[ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="1_p0tmo"]
+[ext_resource type="Texture2D" uid="uid://c65ghsgmuqrk8" path="res://assets/icons/Map image/BG.jpg" id="2_r4pg4"]
+
+[sub_resource type="SystemFont" id="SystemFont_uhfiw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_roicf"]
+blend_mode = 1
+
+[node name="UI_main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p0tmo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r4pg4")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxTitle" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxTitle"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("SystemFont_uhfiw")
+theme_override_font_sizes/font_size = 50
+text = "Dungeon Blaster Project"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxButton" type="VBoxContainer" parent="MarginContainer/VBoxTitle"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxTitle/VBoxButton"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxTitle/VBoxButton/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quick Play"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxTitle/VBoxButton/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select Map"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxTitle/VBoxButton/HBoxContainer"]
+material = SubResource("CanvasItemMaterial_roicf")
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxTitle/VBoxButton/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxTitle/VBoxButton/HBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxTitle/VBoxButton/HBoxContainer/Exit" to="." method="_on_exit_pressed"]

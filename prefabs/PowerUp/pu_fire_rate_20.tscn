@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://djy31wt5jt5x2"]
+
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_qf0ep"]
+[ext_resource type="Texture2D" uid="uid://bcbtxds7uh6mx" path="res://assets/icons/250plus survival flat icons/bullets.png" id="2_wyu2t"]
+
+[node name="pu_fire_rate_20" type="Node"]
+script = ExtResource("1_qf0ep")
+_id = "pu_fr_20"
+display_name = "Fire rate up"
+image = ExtResource("2_wyu2t")
+damage = -1.0
+fire_rate = 20.0
+description = "Damage -1
+Fire rate +20%"

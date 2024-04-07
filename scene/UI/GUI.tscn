@@ -1,0 +1,243 @@
+[gd_scene load_steps=13 format=3 uid="uid://caycq35b72cdj"]
+
+[ext_resource type="Script" path="res://scripts/UI/GUI_control.gd" id="1_n1yqs"]
+[ext_resource type="Texture2D" uid="uid://d2xcpvqe0pjn6" path="res://assets/textures/gui/exp_bar_empty.png" id="1_tgvy6"]
+[ext_resource type="Texture2D" uid="uid://dxnut1nf8v475" path="res://assets/textures/gui/exp_bar_fill.png" id="2_5bhnv"]
+[ext_resource type="Texture2D" uid="uid://6l2kn3orajn0" path="res://assets/textures/gui/hp_bar_empty.png" id="3_ncdjb"]
+[ext_resource type="Texture2D" uid="uid://dqv3tei0s8j3f" path="res://assets/textures/gui/hp_bar_fill.png" id="4_tqqy1"]
+[ext_resource type="AudioStream" uid="uid://8f7wtmg18ww2" path="res://assets/sounds/XP-Orb-Sound.mp3" id="6_sr6xq"]
+[ext_resource type="Texture2D" uid="uid://muvdwnoo57mr" path="res://assets/icons/250plus survival flat icons/syringe2.png" id="7_1ha7p"]
+[ext_resource type="Texture2D" uid="uid://dsekphqon766k" path="res://assets/icons/250plus survival flat icons/syringe2_empty.png" id="8_q8q34"]
+[ext_resource type="PackedScene" uid="uid://64utmm05ihfe" path="res://scene/UI/UI_pause_menu.tscn" id="9_biny8"]
+[ext_resource type="PackedScene" uid="uid://dmmsxlskngumg" path="res://Utilities/Timer/timer_control.tscn" id="9_lhp4m"]
+[ext_resource type="PackedScene" uid="uid://bxuontef8t3pw" path="res://scene/UI/UI_select_weapon_menu.tscn" id="11_yhubc"]
+[ext_resource type="PackedScene" uid="uid://ct1trbun045ws" path="res://scene/UI/gui_gameover.tscn" id="12_xcayi"]
+
+[node name="GUI" type="Node2D"]
+script = ExtResource("1_n1yqs")
+
+[node name="GUI_buff_menu" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="GUI_buff_menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="exp_bar" type="TextureProgressBar" parent="GUI_buff_menu/HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -5.0
+offset_right = 91.0001
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 2)
+pivot_offset = Vector2(95, 14)
+value = 20.0
+texture_under = ExtResource("1_tgvy6")
+texture_progress = ExtResource("2_5bhnv")
+
+[node name="hp_bar" type="TextureProgressBar" parent="GUI_buff_menu/HUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.648781, 0.710876)
+pivot_offset = Vector2(20, 20)
+value = 100.0
+texture_under = ExtResource("3_ncdjb")
+texture_progress = ExtResource("4_tqqy1")
+
+[node name="lbl_hp" type="Label" parent="GUI_buff_menu/HUD/hp_bar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP: 20
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_level" type="Label" parent="GUI_buff_menu/HUD/hp_bar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 63.0
+offset_bottom = 28.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+text = "Level: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pnl_level_up" type="Panel" parent="GUI_buff_menu/HUD"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2000.0
+offset_top = 100.0
+offset_right = 1648.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 225)
+
+[node name="Container" type="VBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lbl_level_up" type="Label" parent="GUI_buff_menu/HUD/pnl_level_up/Container"]
+layout_mode = 2
+text = "Level Up !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="option_container" type="HBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="upgrade_option" type="VBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+alignment = 1
+
+[node name="upgrade_detail" type="VBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="name_container" type="VBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container/upgrade_detail"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="lbl_buff_name" type="Label" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container/upgrade_detail/name_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.752941, 1, 0.882353, 1)
+text = "Name
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="des_container1" type="VBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container/upgrade_detail"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="lbl_buff_des1" type="Label" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container/upgrade_detail/des_container1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select your buff on the left side, the buff information will show here
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="des_container2" type="VBoxContainer" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container/upgrade_detail"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="lbl_buff_des2" type="Label" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container/upgrade_detail/des_container2"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="snd_lvl_up" type="AudioStreamPlayer" parent="GUI_buff_menu/HUD/pnl_level_up/Container/option_container"]
+unique_name_in_owner = true
+stream = ExtResource("6_sr6xq")
+volume_db = 1.0
+
+[node name="btn_get_buff" type="TextureButton" parent="GUI_buff_menu/HUD/pnl_level_up"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("7_1ha7p")
+texture_pressed = ExtResource("7_1ha7p")
+texture_hover = ExtResource("8_q8q34")
+texture_focused = ExtResource("8_q8q34")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="TimerControl" parent="GUI_buff_menu/HUD" instance=ExtResource("9_lhp4m")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.922
+anchor_right = 1.0
+anchor_bottom = 0.069
+offset_left = -0.160034
+offset_right = 0.0
+offset_bottom = 0.319996
+grow_horizontal = 0
+
+[node name="GUI_pause_menu" type="CanvasLayer" parent="."]
+
+[node name="pause_menu" parent="GUI_pause_menu" node_paths=PackedStringArray("_gui_manager") instance=ExtResource("9_biny8")]
+anchor_left = 0.361
+anchor_top = 0.236
+anchor_right = 0.642
+anchor_bottom = 0.778
+offset_left = -0.0800476
+offset_top = 0.0799866
+offset_right = 0.23999
+offset_bottom = -0.160034
+_gui_manager = NodePath("../..")
+
+[node name="GUI_select_weapon_to_replace" type="CanvasLayer" parent="."]
+
+[node name="select_weapon_menu" parent="GUI_select_weapon_to_replace" instance=ExtResource("11_yhubc")]
+anchor_left = 0.352
+anchor_top = 0.269
+anchor_right = 0.653
+anchor_bottom = 0.575
+offset_left = -0.560028
+offset_top = 0.319977
+offset_right = -385.84
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_gameover" parent="." instance=ExtResource("12_xcayi")]
+visible = false
+
+[connection signal="pressed" from="GUI_buff_menu/HUD/pnl_level_up/btn_get_buff" to="." method="_on_get_buff_pressed"]
+[connection signal="on_game_time_out" from="GUI_buff_menu/HUD/TimerControl" to="GUI_gameover" method="show_gameover"]
